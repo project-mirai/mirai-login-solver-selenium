@@ -60,9 +60,16 @@ allprojects {
     }
 }
 
+tasks.create("sourcesJar", Jar::class) {
+    dependsOn("classes")
+    classifier = "sources"
+    from(sourceSets.main.get().allSource)
+}
+
 publishing {
     publications.register("artifact", MavenPublication::class.java) {
         from(components["java"])
+        artifact(tasks.getByName("sourcesJar"))
         val chromeExt = File("src/main/resources/mirai-selenium-ext.zip")
         if (chromeExt.isFile) {
             artifact(object :
@@ -78,6 +85,7 @@ bintray {
 
     user = (project.propertySafe("bintray.user") ?: System.getenv("USERNAME")).toString()
     key = (project.propertySafe("bintray.key") ?: System.getenv("TOKEN")).toString()
+    override = true
     pkg.apply {
         repo = "mirai"
         name = rootProject.name
