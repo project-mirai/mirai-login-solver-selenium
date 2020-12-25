@@ -1,0 +1,35 @@
+{
+  "manifest_version": 2,
+  "name": "Mirai Selenium",
+  "version": "0.01",
+  "description": "DESC",
+  "permissions": [
+    "tabs",
+    "webRequest",
+    "webRequestBlocking",
+    "contextMenus",
+    "storage",
+    "downloads",
+    "*://ssl.captcha.qq.com/**",
+    "unlimitedStorage"
+  ],
+  "web_accessible_resources": [
+    "js/captcha.inject.js",
+    "handle.html"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://ssl.captcha.qq.com/**"
+      ],
+      "js": [
+        "js/captcha.inject.backend.js"
+      ]
+    }
+  ],
+  "background": {
+    "scripts": [
+      "js/backend.js"
+    ]
+  }
+}
