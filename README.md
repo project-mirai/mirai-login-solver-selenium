@@ -17,9 +17,31 @@ Mirai 是一个在全平台下运行，提供 QQ 协议支持的高效率机器�
 
 [ ![Download](https://api.bintray.com/packages/karlatemp/mirai/mirai-login-solver-selenium/images/download.svg) ](https://bintray.com/karlatemp/mirai/mirai-login-solver-selenium/_latestVersion)
 
-Mirai 滑动验证码支持
+该模块负责处理滑动验证码, `mirai-core` 并不强制要求使用 `mirai-login-solver-selenium`
+
+使用时添加该模块至运行时 classpath 即可
+
+## 运行平台支持
+
+| OS      | Browser | 是否支持 |
+| ------- | -----   | -----  |
+| Windows | Chrome  | Yes    |
+| Windows | FireFox | No     |
+| Linux   | ------- | No     |
+| MacOS   | ------- | No     |
+
+## 手动完成滑动验证码
+
+完成滑动验证码需要 Chrome 扩展插件支持(`下载地址见下文`).
+完成扩展安装后添加 JVM 属性 `mirai.slider.captcha.supported` 至 mirai 运行时即可手动验证
 
 ## 下载 Chrome 扩展插件
 
 打开 [本链接](https://dl.bintray.com/karlatemp/mirai/net/mamoe/mirai-login-solver-selenium/)
 进入最新版本下载 `.crx` 结尾的文件
+
+## 加载 Chrome 扩展插件
+
+把下载的插件从 `.crx` 改名成 `.zip`, 并创建任意一个文件夹解压内容
+
+打开 `chrome://extensions/`, 开启 `开发者模式`, 选择 `加载已解压的扩展程序`
