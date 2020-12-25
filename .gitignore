@@ -1,0 +1,14 @@
+
+.idea
+.gradle
+build/
+/MxLibData
+
+# https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/chrome/index.d.ts
+src/mirai-selenium-ext/index.d.ts
+
+*.logs
+
+# Dynamically generated
+src/main/resources/mirai-selenium-ext.update-time
+src/main/resources/mirai-selenium-ext.zip
