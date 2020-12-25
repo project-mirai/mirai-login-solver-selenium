@@ -18,7 +18,7 @@ console.log("Backend working");
 function setHeader(headers, header, value) {
     for (let i = 0; i < headers.length; i++) {
         let h = headers[i];
-        if (h.name == header) {
+        if (h.name.toLowerCase() == header.toLowerCase()) {
             h.value = value
             return
         }
@@ -32,6 +32,7 @@ function setHeader(headers, header, value) {
 chrome.webRequest.onBeforeSendHeaders.addListener((details) => {
         let headers = details.requestHeaders;
         setHeader(headers, "X-Requested-With", "com.tencent.tim");
+        setHeader(headers, "User-Agent", "Mozilla/5.0 (Linux; Android 7.1.1; MIUI ONEPLUS/A5000_23_17; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/77.0.3865.120 MQQBrowser/6.2 TBS/045426 Mobile Safari/537.36 V1_AND_SQ_8.3.9_0_TIM_D QQ/3.1.1.2900 NetType/WIFI WebP/0.3.0 Pixel/720 StatusBarHeight/36 SimpleUISwitch/0 QQTheme/1015712");
         return {requestHeaders: headers};
     },
     {urls: ["*://ssl.captcha.qq.com/**"]},
