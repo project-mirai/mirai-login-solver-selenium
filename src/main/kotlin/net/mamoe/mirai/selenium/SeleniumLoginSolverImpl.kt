@@ -46,7 +46,6 @@ internal val classLoader = SeleniumLoginSolverImpl::class.java.classLoader
 
 internal val setup: Unit by lazy {
     ext = extractExt()
-    println("ext = $ext")
 }
 
 internal val UserAgent =
