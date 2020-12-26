@@ -46,6 +46,12 @@ Mirai 是一个在全平台下运行，提供 QQ 协议支持的高效率机器�
 
 打开 `chrome://extensions/`, 开启 `开发者模式`, 选择 `加载已解压的扩展程序`
 
+打开 DevTools, 在右上角中的 `More Tools` 找到 `Network conditions`, 将 `User agent` 修改成以下值
+
+```text
+Mozilla/5.0 (Linux; Android 7.1.1; MIUI ONEPLUS/A5000_23_17; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/77.0.3865.120 MQQBrowser/6.2 TBS/045426 Mobile Safari/537.36 V1_AND_SQ_8.3.9_0_TIM_D QQ/3.1.1.2900 NetType/WIFI WebP/0.3.0 Pixel/720 StatusBarHeight/36 SimpleUISwitch/0 QQTheme/1015712
+```
+
 ## 在 MiraiConsole 中使用
 
 ### Download
