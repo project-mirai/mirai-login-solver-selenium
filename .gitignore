@@ -10,5 +10,6 @@ src/mirai-selenium-ext/index.d.ts
 *.logs
 
 # Dynamically generated
+!src/main/resources/META-INF/services/net.mamoe.mirai.console.plugin.jvm.JvmPlugin
 src/main/resources/mirai-selenium-ext.update-time
 src/main/resources/mirai-selenium-ext.zip

@@ -12,7 +12,7 @@ plugins {
 }
 
 group = "net.mamoe"
-version = "1.0-dev-3"
+version = "1.0-dev-4"
 
 repositories {
     mavenCentral()
@@ -34,6 +34,7 @@ dependencies {
     }
     compileAndRuntime("net.mamoe:mirai-core-api:2.0-M2-dev-2")
     testImplementation("net.mamoe:mirai-core:2.0-M2-dev-2")
+    compileAndRuntime("net.mamoe:mirai-console:2.0-M1")
 }
 
 tasks.create("packageExt", JavaExec::class) {

@@ -45,3 +45,17 @@ Mirai 是一个在全平台下运行，提供 QQ 协议支持的高效率机器�
 把下载的插件从 `.crx` 改名成 `.zip`, 并创建任意一个文件夹解压内容
 
 打开 `chrome://extensions/`, 开启 `开发者模式`, 选择 `加载已解压的扩展程序`
+
+## 在 MiraiConsole 中使用
+
+### Download
+
+```shell script
+# 注: 自行更换对应版本号
+
+# Download mirai-login-solver-selenium
+
+curl -L https://maven.aliyun.com/repository/public/net/mamoe/mirai-login-solver-selenium/1.0-dev-4/mirai-login-solver-selenium-dev-4-all.jar -o mirai-login-solver-selenium-1.0-dev-4.jar
+
+```
+
