@@ -61,7 +61,7 @@ Mozilla/5.0 (Linux; Android 7.1.1; MIUI ONEPLUS/A5000_23_17; wv) AppleWebKit/537
 
 # Download mirai-login-solver-selenium
 
-curl -L https://maven.aliyun.com/repository/public/net/mamoe/mirai-login-solver-selenium/1.0-dev-4/mirai-login-solver-selenium-dev-4-all.jar -o mirai-login-solver-selenium-1.0-dev-4.jar
+curl -L https://maven.aliyun.com/repository/public/net/mamoe/mirai-login-solver-selenium/1.0-dev-4/mirai-login-solver-selenium-1.0-dev-4-all.jar -o mirai-login-solver-selenium-1.0-dev-4.jar
 
 ```
 
