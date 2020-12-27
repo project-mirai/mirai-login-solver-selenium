@@ -54,6 +54,12 @@ Mozilla/5.0 (Linux; Android 7.1.1; MIUI ONEPLUS/A5000_23_17; wv) AppleWebKit/537
 
 ## 在 MiraiConsole 中使用
 
+### 使用 [Mirai Console Loader](https://github.com/iTXTech/mirai-console-loader) 安装 `Mirai login solver selenium`
+
+* `MCL` 支持自动更新插件，支持设置插件更新频道等功能
+
+`./mcl --update-package net.mamoe:mirai-login-solver-selenium --set-channel stable --set-type plugins`
+
 ### Download
 
 ```shell script
