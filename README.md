@@ -59,9 +59,12 @@ curl -L https://maven.aliyun.com/repository/public/net/mamoe/mirai-login-solver-
 
 ```
 
-## 手动完成滑动验证码解决
+## 手动完成滑动验证
 
 ### 环境准备
+
+在 `mirai` 运行时中添加 JVM 属性 `mirai.slider.captcha.supported` (添加参数 `-Dmirai.slider.captcha.supported`)
+以确认手动完成滑动验证
 
 准备一台拥有桌面系统的电脑, 并且需要安装支持 DevTools 的任意浏览器 (Eg `Chrome`, `Firefox`)
 
