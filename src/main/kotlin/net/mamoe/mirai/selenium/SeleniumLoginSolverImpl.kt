@@ -9,8 +9,9 @@ import net.mamoe.mirai.Bot
 import net.mamoe.mirai.network.WrongPasswordException
 import net.mamoe.mirai.utils.LoginSolver
 import net.mamoe.mirai.utils.SwingSolver
-import org.openqa.selenium.chrome.ChromeOptions
-import org.openqa.selenium.firefox.FirefoxOptions
+import org.openqa.selenium.Dimension
+import org.openqa.selenium.PageLoadStrategy
+import org.openqa.selenium.remote.AbstractDriverOptions
 import java.io.File
 import kotlin.concurrent.thread
 import kotlin.coroutines.Continuation
@@ -41,35 +42,34 @@ internal class SeleniumLoginSolverImpl : LoginSolver() {
     }
 }
 
-internal lateinit var ext: File
+internal val klass = SeleniumLoginSolverImpl::class.java
 internal val classLoader = SeleniumLoginSolverImpl::class.java.classLoader
 
 internal val setup: Unit by lazy {
-    ext = extractExt()
 }
 
 internal val UserAgent =
     "Mozilla/5.0 (Linux; Android 7.1.1; MIUI ONEPLUS/A5000_23_17; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/77.0.3865.120 MQQBrowser/6.2 TBS/045426 Mobile Safari/537.36 V1_AND_SQ_8.3.9_0_TIM_D QQ/3.1.1.2900 NetType/WIFI WebP/0.3.0 Pixel/720 StatusBarHeight/36 SimpleUISwitch/0 QQTheme/1015712"
 
+internal val script by lazy {
+    klass.getResourceAsStream("/mirai-selenium/captcha.inject.js")!!.bufferedReader().use{
+        it.readText()
+    }
+}
+
 internal fun process(bot: Bot?, url: String, c: Continuation<String>) {
     Thread.currentThread().contextClassLoader = classLoader
     val provider = MxSelenium.newDriver(UserAgent) { options ->
         when (options) {
-            is ChromeOptions -> {
-                if (ext.isDirectory) {
-                    options.addArguments("--load-extension=$ext")
-                } else {
-                    options.addExtensions(ext)
-                }
+            is AbstractDriverOptions<*> -> {
+                options.setPageLoadStrategy(PageLoadStrategy.EAGER)
             }
-            is FirefoxOptions -> {
-                throw UnsupportedOperationException("Not supported firefox platform")
-            }
-            else -> throw UnsupportedOperationException("Not supported. options=$options")
         }
     }
     try {
+        provider.manage().window().size = Dimension(425, 900)
         provider.get(url)
+        provider.executeScript(script)
         while (true) {
             Thread.sleep(1000)
             try {
@@ -104,23 +104,5 @@ internal fun process(bot: Bot?, url: String, c: Continuation<String>) {
     } finally {
         provider.quit()
     }
-}
-
-internal fun extractExt(): File {
-    val file = File(MxLib.getDataStorage(), "mirai-selenium-ext.zip")
-    val updatetime = File(MxLib.getDataStorage(), "mirai-selenium-ext.update-time")
-    val uptime = SeleniumLoginSolverImpl::class.java.getResourceAsStream("/mirai-selenium-ext.update-time")
-        .bufferedReader().use { it.readLine().trim() }
-    val tm = if (updatetime.isFile) {
-        updatetime.bufferedReader().use { it.readLine().trim() }
-    } else ""
-    if (tm != uptime || !file.isFile) {
-        file.parentFile.mkdirs()
-        SeleniumLoginSolverImpl::class.java.getResourceAsStream("/mirai-selenium-ext.zip").buffered().use { res ->
-            file.outputStream().buffered().use { res.copyTo(it) }
-        }
-        updatetime.bufferedWriter().use { it.append(uptime) }
-    }
-    return file
 }
 

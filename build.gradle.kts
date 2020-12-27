@@ -37,13 +37,13 @@ dependencies {
     compileAndRuntime("net.mamoe:mirai-console:2.0-M1")
 }
 
-tasks.create("packageExt", JavaExec::class) {
-    main = "net.mamoe.mirai.selenium.test.PackExt"
-    classpath = sourceSets.test.get().runtimeClasspath
-}
-
-tasks.getByName("jar").dependsOn("packageExt")
-tasks.getByName("shadowJar").dependsOn("packageExt")
+//tasks.create("packageExt", JavaExec::class) {
+//    main = "net.mamoe.mirai.selenium.test.PackExt"
+//    classpath = sourceSets.test.get().runtimeClasspath
+//}
+//
+//tasks.getByName("jar").dependsOn("packageExt")
+//tasks.getByName("shadowJar").dependsOn("packageExt")
 
 tasks.getByName("shadowJar", com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar::class) {
     exclude("module-info.class")
