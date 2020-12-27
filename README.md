@@ -42,6 +42,12 @@ MacOS   - Not in support - No device
 
 ## 在 MiraiConsole 中使用
 
+### 使用 [Mirai Console Loader](https://github.com/iTXTech/mirai-console-loader) 安装 `Mirai login solver selenium`
+
+* `MCL` 支持自动更新插件，支持设置插件更新频道等功能
+
+`./mcl --update-package net.mamoe:mirai-login-solver-selenium --set-channel stable --set-type plugins`
+
 ### Download
 
 ```shell script
@@ -49,7 +55,7 @@ MacOS   - Not in support - No device
 
 # Download mirai-login-solver-selenium
 
-curl -L https://maven.aliyun.com/repository/public/net/mamoe/mirai-login-solver-selenium/1.0-dev-4/mirai-login-solver-selenium-dev-4-all.jar -o mirai-login-solver-selenium-1.0-dev-4.jar
+curl -L https://maven.aliyun.com/repository/public/net/mamoe/mirai-login-solver-selenium/1.0-dev-4/mirai-login-solver-selenium-1.0-dev-4-all.jar -o mirai-login-solver-selenium-1.0-dev-4.jar
 
 ```
 
