@@ -16,6 +16,7 @@ Mirai 是一个在全平台下运行，提供 QQ 协议支持的高效率机器�
 # mirai-login-solver-selenium
 
 [ ![Download](https://api.bintray.com/packages/karlatemp/mirai/mirai-login-solver-selenium/images/download.svg) ](https://bintray.com/karlatemp/mirai/mirai-login-solver-selenium/_latestVersion)
+![Gradle CI](https://github.com/project-mirai/mirai-login-solver-selenium/workflows/Gradle%20CI/badge.svg?branch=master)
 
 该模块负责处理滑动验证码, `mirai-core` 并不强制要求使用 `mirai-login-solver-selenium`
 
