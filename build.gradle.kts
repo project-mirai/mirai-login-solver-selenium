@@ -87,6 +87,7 @@ bintray {
     user = (project.propertySafe("bintray.user") ?: System.getenv("USERNAME")).toString()
     key = (project.propertySafe("bintray.key") ?: System.getenv("TOKEN")).toString()
     override = true
+    publish = true
     pkg.apply {
         repo = "mirai"
         name = rootProject.name

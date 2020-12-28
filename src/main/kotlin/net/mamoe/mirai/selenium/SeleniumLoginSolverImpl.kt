@@ -1,6 +1,5 @@
 package net.mamoe.mirai.selenium
 
-import io.github.karlatemp.mxlib.MxLib
 import io.github.karlatemp.mxlib.selenium.MxSelenium
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
@@ -12,11 +11,8 @@ import net.mamoe.mirai.utils.SwingSolver
 import org.openqa.selenium.Dimension
 import org.openqa.selenium.PageLoadStrategy
 import org.openqa.selenium.remote.AbstractDriverOptions
-import java.io.File
+import java.lang.Thread.sleep
 import kotlin.concurrent.thread
-import kotlin.coroutines.Continuation
-import kotlin.coroutines.resume
-import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
 internal class SeleniumLoginSolverImpl : LoginSolver() {
@@ -35,9 +31,9 @@ internal class SeleniumLoginSolverImpl : LoginSolver() {
         return SwingSolver.onSolveUnsafeDeviceLoginVerify(bot, url)
     }
 
-    override suspend fun onSolveSliderCaptcha(bot: Bot, url: String): String? = suspendCoroutine<String> { c ->
+    override suspend fun onSolveSliderCaptcha(bot: Bot, url: String): String? = suspendCoroutine<String?> { c ->
         thread {
-            process(bot, url, c)
+            c.resumeWith(kotlin.runCatching { process(url) })
         }
     }
 }
@@ -52,12 +48,12 @@ internal val UserAgent =
     "Mozilla/5.0 (Linux; Android 7.1.1; MIUI ONEPLUS/A5000_23_17; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/77.0.3865.120 MQQBrowser/6.2 TBS/045426 Mobile Safari/537.36 V1_AND_SQ_8.3.9_0_TIM_D QQ/3.1.1.2900 NetType/WIFI WebP/0.3.0 Pixel/720 StatusBarHeight/36 SimpleUISwitch/0 QQTheme/1015712"
 
 internal val script by lazy {
-    klass.getResourceAsStream("/mirai-selenium/captcha.inject.js")!!.bufferedReader().use{
+    klass.getResourceAsStream("/mirai-selenium/captcha.inject.js")!!.bufferedReader().use {
         it.readText()
     }
 }
 
-internal fun process(bot: Bot?, url: String, c: Continuation<String>) {
+internal fun process(url: String): String? {
     Thread.currentThread().contextClassLoader = classLoader
     val provider = MxSelenium.newDriver(UserAgent) { options ->
         when (options) {
@@ -71,34 +67,28 @@ internal fun process(bot: Bot?, url: String, c: Continuation<String>) {
         provider.get(url)
         provider.executeScript(script)
         while (true) {
-            Thread.sleep(1000)
-            try {
-                val handles = provider.windowHandles
-                if (handles.isEmpty()) break
+            sleep(1000)
+            val handles = provider.windowHandles
+            if (handles.isEmpty()) return null
 
-                runCatching {
-                    val alert = provider.switchTo().alert()
-                    val title = alert.text
-                    if (title == "MiraiSelenium - ticket") {
-                        alert.accept()
-                    }
+            runCatching {
+                val alert = provider.switchTo().alert()
+                val title = alert.text
+                if (title == "MiraiSelenium - ticket") {
+                    alert.accept()
                 }
-                val response = runCatching {
-                    provider.executeScript("return window.miraiSeleniumComplete")?.toString()
-                }.getOrNull()
-                if (response != null) {
-                    val respObj = Json.decodeFromString(JsonObject.serializer(), response)
-                    val ticket = respObj["ticket"] as? JsonPrimitive
-                    if (ticket != null) {
-                        c.resume(ticket.content)
-                    } else {
-                        c.resumeWithException(WrongPasswordException(response))
-                    }
-                    break
+            }
+            val response = runCatching {
+                provider.executeScript("return window.miraiSeleniumComplete")?.toString()
+            }.getOrNull()
+            if (response != null) {
+                val respObj = Json.decodeFromString(JsonObject.serializer(), response)
+                val ticket = respObj["ticket"] as? JsonPrimitive
+                if (ticket != null) {
+                    return ticket.content
+                } else {
+                    throw (WrongPasswordException(response))
                 }
-            } catch (e: Throwable) {
-                c.resumeWithException(e)
-                break
             }
         }
     } finally {
