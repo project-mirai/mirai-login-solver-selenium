@@ -2,7 +2,7 @@
 
 import org.jetbrains.kotlin.gradle.dsl.*
 import org.jetbrains.kotlin.utils.addToStdlib.safeAs
-import java.util.Date
+import java.util.*
 
 plugins {
     kotlin("jvm") version "1.4.21"
@@ -84,8 +84,18 @@ publishing {
 bintray {
     setPublications("artifact")
 
-    user = (project.propertySafe("bintray.user") ?: System.getenv("USERNAME") ?: "").toString()
-    key = (project.propertySafe("bintray.key") ?: System.getenv("TOKEN") ?: "").toString()
+    user = (
+            project.propertySafe("bintray.user")
+                ?: project.propertySafe("bintray_user")
+                ?: System.getenv("USERNAME")
+                ?: ""
+            ).toString()
+    key = (
+            project.propertySafe("bintray.key")
+                ?: project.propertySafe("bintray_key")
+                ?: System.getenv("TOKEN")
+                ?: ""
+            ).toString()
     override = true
     publish = true
     pkg.apply {
