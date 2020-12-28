@@ -41,6 +41,21 @@ Linux   - Not tested
 MacOS   - Not in support - No device
 ```
 
+## 在 Mirai 使用
+
+添加依赖即可.
+
+`build.gradle`, `build.gradle.kts`
+```kotlin
+repositories {
+    jcenter()
+}
+
+dependencies {
+    runtimeOnly("net.mamoe:mirai-login-solver-selenium:1.0-dev-6")
+}
+```
+
 ## 在 MiraiConsole 中使用
 
 ### 使用 [Mirai Console Loader](https://github.com/iTXTech/mirai-console-loader) 安装 `Mirai login solver selenium`
@@ -49,14 +64,14 @@ MacOS   - Not in support - No device
 
 `./mcl --update-package net.mamoe:mirai-login-solver-selenium --set-channel nightly --set-type plugins`
 
-### Download
+### 手动下载
 
 ```shell script
 # 注: 自行更换对应版本号
 
 # Download mirai-login-solver-selenium
 
-curl -L https://maven.aliyun.com/repository/public/net/mamoe/mirai-login-solver-selenium/1.0-dev-4/mirai-login-solver-selenium-1.0-dev-4-all.jar -o mirai-login-solver-selenium-1.0-dev-4.jar
+curl -L https://maven.aliyun.com/repository/public/net/mamoe/mirai-login-solver-selenium/1.0-dev-4/mirai-login-solver-selenium-1.0-dev-6-all.jar -o mirai-login-solver-selenium-1.0-dev-6.jar
 
 ```
 
