@@ -16,6 +16,7 @@ Mirai 是一个在全平台下运行，提供 QQ 协议支持的高效率机器�
 # mirai-login-solver-selenium
 
 [ ![Download](https://api.bintray.com/packages/karlatemp/mirai/mirai-login-solver-selenium/images/download.svg) ](https://bintray.com/karlatemp/mirai/mirai-login-solver-selenium/_latestVersion)
+![Gradle CI](https://github.com/project-mirai/mirai-login-solver-selenium/workflows/Gradle%20CI/badge.svg?branch=master)
 
 该模块负责处理滑动验证码, `mirai-core` 并不强制要求使用 `mirai-login-solver-selenium`
 
@@ -66,6 +67,21 @@ Linux   - Not tested
 MacOS   - Not in support - No device
 ```
 
+## 在 Mirai 使用
+
+添加依赖即可.
+
+`build.gradle`, `build.gradle.kts`
+```kotlin
+repositories {
+    jcenter()
+}
+
+dependencies {
+    runtimeOnly("net.mamoe:mirai-login-solver-selenium:1.0-dev-6")
+}
+```
+
 ## 在 MiraiConsole 中使用
 
 ### 使用 [Mirai Console Loader](https://github.com/iTXTech/mirai-console-loader) 安装 `Mirai login solver selenium`
@@ -74,7 +90,7 @@ MacOS   - Not in support - No device
 
 `./mcl —update-package xxxx —channel nightly —type plugin`
 
-### Download
+### 手动下载
 
 ```shell script
 # 注: 自行更换对应版本号
