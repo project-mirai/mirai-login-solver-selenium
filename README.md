@@ -55,7 +55,7 @@ MacOS   - Not in support - No device
 
 # Download mirai-login-solver-selenium
 
-curl -L https://maven.aliyun.com/repository/public/net/mamoe/mirai-login-solver-selenium/1.0-dev-4/mirai-login-solver-selenium-1.0-dev-4-all.jar -o mirai-login-solver-selenium-1.0-dev-4.jar
+curl -L https://maven.aliyun.com/repository/public/net/mamoe/mirai-login-solver-selenium/1.0-dev-9/mirai-login-solver-selenium-1.0-dev-9-all.jar -o mirai-login-solver-selenium-1.0-dev-4.jar
 
 ```
 

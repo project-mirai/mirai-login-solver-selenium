@@ -12,7 +12,7 @@ plugins {
 }
 
 group = "net.mamoe"
-version = "1.0-dev-6"
+version = "1.0-dev-9"
 
 repositories {
     mavenCentral()

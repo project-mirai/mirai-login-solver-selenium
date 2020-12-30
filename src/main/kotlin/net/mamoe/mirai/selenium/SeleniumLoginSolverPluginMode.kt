@@ -19,7 +19,7 @@ import java.util.*
 internal class SeleniumLoginSolverPluginMode : KotlinPlugin(
     JvmPluginDescriptionBuilder(
         id = "net.mamoe.mirai-login-solver-selenium",
-        version = "1.0-dev-4"
+        version = "1.0-dev-9"
     ).build()
 ), BotConfigurationAlterer {
     override fun PluginComponentStorage.onLoad() {
