@@ -35,7 +35,33 @@ Mirai 是一个在全平台下运行，提供 QQ 协议支持的高效率机器�
 ```text
 Windows - Chrome  - test ok
 Windows - Firefox - test ok
+
 CentOS  - Firefox - test ok
+|    $ xdg-settings get default-web-browser
+|    firefox.desktop
+|    $ cat /proc/version 
+|    Linux version 4.18.0-193.14.2.el8_2.x86_64 (mockbuild@kbuilder.bsys.centos.org) (gcc version 8.3.1 20191121 (Red Hat 8.3.1-5) (GCC)) #1 SMP Sun Jul 26 03:54:29 UTC 2020
+|    $ uname -srm
+|    Linux 4.18.0-193.14.2.el8_2.x86_64 x86_64
+|    $ cat /etc/os-release 
+|    NAME="CentOS Linux"
+|    VERSION="8 (Core)"
+|    ID="centos"
+|    ID_LIKE="rhel fedora"
+|    VERSION_ID="8"
+|    PLATFORM_ID="platform:el8"
+|    PRETTY_NAME="CentOS Linux 8 (Core)"
+|    ANSI_COLOR="0;31"
+|    CPE_NAME="cpe:/o:centos:centos:8"
+|    HOME_URL="https://www.centos.org/"
+|    BUG_REPORT_URL="https://bugs.centos.org/"
+|
+|    CENTOS_MANTISBT_PROJECT="CentOS-8"
+|    CENTOS_MANTISBT_PROJECT_VERSION="8"
+|    REDHAT_SUPPORT_PRODUCT="centos"
+|    REDHAT_SUPPORT_PRODUCT_VERSION="8"
+
+
 Linux   - Not tested
 MacOS   - Not in support - No device
 ```
