@@ -78,7 +78,7 @@ repositories {
 }
 
 dependencies {
-    runtimeOnly("net.mamoe:mirai-login-solver-selenium:1.0-dev-6")
+    runtimeOnly("net.mamoe:mirai-login-solver-selenium:1.0-dev-9")
 }
 ```
 
