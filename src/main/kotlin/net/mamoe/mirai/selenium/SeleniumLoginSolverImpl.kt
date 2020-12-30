@@ -19,7 +19,9 @@ internal class SeleniumLoginSolverImpl : LoginSolver() {
     override val isSliderCaptchaSupported: Boolean get() = true
 
     init {
-        setup
+        setup?.let {
+            throw RuntimeException("Exception in loading selenium", it)
+        }
     }
 
     override suspend fun onSolvePicCaptcha(bot: Bot, data: ByteArray): String? {
@@ -33,7 +35,9 @@ internal class SeleniumLoginSolverImpl : LoginSolver() {
 
     override suspend fun onSolveSliderCaptcha(bot: Bot, url: String): String? = suspendCoroutine<String?> { c ->
         thread {
-            c.resumeWith(kotlin.runCatching { process(url) })
+            c.resumeWith(kotlin.runCatching {
+                process(url)
+            })
         }
     }
 }
@@ -41,7 +45,20 @@ internal class SeleniumLoginSolverImpl : LoginSolver() {
 internal val klass = SeleniumLoginSolverImpl::class.java
 internal val classLoader = SeleniumLoginSolverImpl::class.java.classLoader
 
-internal val setup: Unit by lazy {
+internal val setup: Throwable? by lazy {
+    runCatching {
+        val thread = Thread.currentThread()
+        val oc = thread.contextClassLoader
+        try {
+            thread.contextClassLoader = classLoader
+            MxSelenium.initialize()
+            if (!MxSelenium.isSupported()) {
+                MxSelenium.newDriver()
+            }
+        } finally {
+            thread.contextClassLoader = oc
+        }
+    }.exceptionOrNull()
 }
 
 internal val UserAgent =
@@ -54,6 +71,7 @@ internal val script by lazy {
 }
 
 internal fun process(url: String): String? {
+    System.err.println("[LoginSolverSelenium] Captcha URL: $url")
     Thread.currentThread().contextClassLoader = classLoader
     val provider = MxSelenium.newDriver(UserAgent) { options ->
         when (options) {

@@ -27,8 +27,8 @@ dependencies {
         testImplementation(module)
     }
     compileAndRuntime(kotlin("stdlib"))
-    implementation("io.github.karlatemp.mxlib:mxlib-api:3.0-dev-2")
-    implementation("io.github.karlatemp.mxlib:mxlib-selenium:3.0-dev-2") {
+    implementation("io.github.karlatemp.mxlib:mxlib-api:3.0-dev-3")
+    implementation("io.github.karlatemp.mxlib:mxlib-selenium:3.0-dev-3") {
         exclude("junit", "junit")
         exclude("classworlds", "classworlds")
     }

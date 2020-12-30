@@ -23,6 +23,12 @@ internal class SeleniumLoginSolverPluginMode : KotlinPlugin(
     ).build()
 ), BotConfigurationAlterer {
     override fun PluginComponentStorage.onLoad() {
+        try {
+            SeleniumLoginSolver
+        } catch (err: Throwable) {
+            logger.warning("mirai-login-solver-selenium is not supported.", err)
+            return
+        }
         contributeBotConfigurationAlterer(this@SeleniumLoginSolverPluginMode)
     }
 
