@@ -31,7 +31,7 @@ Mirai 是一个在全平台下运行，提供 QQ 协议支持的高效率机器�
 | CentOS  | Firefox | Yes    |
 | Linux   | Firefox | 未测试  |
 | Linux   | ------- | No     |
-| MacOS   | ------- | No     |
+| MacOS   | Chrome  | Yes    |
 
 ```text
 Windows - Chrome  - test ok
@@ -64,7 +64,10 @@ CentOS  - Firefox - test ok
 
 
 Linux   - Not tested
-MacOS   - Not in support - No device
+MacOS   - Chrome  - test ok
+|    os.arch = x86_64
+|    os.name = Mac OS X
+|    os.version = 10.16
 ```
 
 ## 在 Mirai 使用
@@ -78,7 +81,7 @@ repositories {
 }
 
 dependencies {
-    runtimeOnly("net.mamoe:mirai-login-solver-selenium:1.0-dev-9")
+    runtimeOnly("net.mamoe:mirai-login-solver-selenium:1.0-dev-10")
 }
 ```
 
@@ -97,7 +100,7 @@ dependencies {
 
 # Download mirai-login-solver-selenium
 
-curl -L https://maven.aliyun.com/repository/public/net/mamoe/mirai-login-solver-selenium/1.0-dev-9/mirai-login-solver-selenium-1.0-dev-9-all.jar -o mirai-login-solver-selenium-1.0-dev-4.jar
+curl -L https://maven.aliyun.com/repository/public/net/mamoe/mirai-login-solver-selenium/1.0-dev-10/mirai-login-solver-selenium-1.0-dev-10-all.jar -o mirai-login-solver-selenium-1.0-dev-10.jar
 
 ```
 

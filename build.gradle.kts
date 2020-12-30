@@ -12,7 +12,7 @@ plugins {
 }
 
 group = "net.mamoe"
-version = "1.0-dev-9"
+version = "1.0-dev-10"
 
 repositories {
     mavenCentral()
@@ -27,8 +27,8 @@ dependencies {
         testImplementation(module)
     }
     compileAndRuntime(kotlin("stdlib"))
-    implementation("io.github.karlatemp.mxlib:mxlib-api:3.0-dev-3")
-    implementation("io.github.karlatemp.mxlib:mxlib-selenium:3.0-dev-3") {
+    implementation("io.github.karlatemp.mxlib:mxlib-api:3.0-dev-4")
+    implementation("io.github.karlatemp.mxlib:mxlib-selenium:3.0-dev-4") {
         exclude("junit", "junit")
         exclude("classworlds", "classworlds")
     }
