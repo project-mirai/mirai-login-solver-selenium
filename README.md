@@ -46,7 +46,7 @@ MacOS   - Not in support - No device
 
 * `MCL` 支持自动更新插件，支持设置插件更新频道等功能
 
-`./mcl --update-package net.mamoe:mirai-login-solver-selenium --set-channel nightly --set-type plugins`
+`./mcl —update-package xxxx —channel nightly —type plugin`
 
 ### Download
 
