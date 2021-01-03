@@ -91,7 +91,7 @@ dependencies {
 
 * `MCL` 支持自动更新插件，支持设置插件更新频道等功能
 
-`./mcl —update-package xxxx —channel nightly —type plugin`
+`./mcl --update-package net.mamoe:mirai-login-solver-selenium --channel nightly --type plugin`
 
 ### 手动下载
 
