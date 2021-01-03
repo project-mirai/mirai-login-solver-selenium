@@ -13,16 +13,18 @@ import net.mamoe.mirai.console.extension.PluginComponentStorage
 import net.mamoe.mirai.console.extensions.BotConfigurationAlterer
 import net.mamoe.mirai.console.plugin.jvm.JvmPluginDescriptionBuilder
 import net.mamoe.mirai.console.plugin.jvm.KotlinPlugin
+import net.mamoe.mirai.console.plugin.version
 import net.mamoe.mirai.utils.BotConfiguration
 import java.util.*
 
 internal class SeleniumLoginSolverPluginMode : KotlinPlugin(
     JvmPluginDescriptionBuilder(
         id = "net.mamoe.mirai-login-solver-selenium",
-        version = "1.0-dev-9"
+        version = "1.0-dev-11"
     ).build()
 ), BotConfigurationAlterer {
     override fun PluginComponentStorage.onLoad() {
+        logger.info("Loading mirai-login-solver-selenium v$version")
         try {
             SeleniumLoginSolver
         } catch (err: Throwable) {

@@ -8,3 +8,7 @@ build/
 src/mirai-selenium-ext/index.d.ts
 
 *.logs
+*.log
+*.pem
+*.crt
+*.p12

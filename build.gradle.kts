@@ -12,7 +12,7 @@ plugins {
 }
 
 group = "net.mamoe"
-version = "1.0-dev-10"
+version = "1.0-dev-11"
 
 repositories {
     mavenCentral()
@@ -26,12 +26,38 @@ dependencies {
         compileOnly(module)
         testImplementation(module)
     }
+
+    fun mxlib(module:String):String {
+        return "io.github.karlatemp.mxlib:mxlib-$module:3.0-dev-5"
+    }
+
     compileAndRuntime(kotlin("stdlib"))
-    implementation("io.github.karlatemp.mxlib:mxlib-api:3.0-dev-4")
-    implementation("io.github.karlatemp.mxlib:mxlib-selenium:3.0-dev-4") {
+
+    implementation(mxlib("api"))
+    implementation(mxlib("common"))
+    implementation(mxlib("selenium")) {
         exclude("junit", "junit")
         exclude("classworlds", "classworlds")
+        exclude("io.netty", "netty-all")
     }
+    testImplementation(mxlib("logger"))
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-jdk14
+    testImplementation("org.slf4j:slf4j-jdk14:1.7.30")
+    // https://mvnrepository.com/artifact/io.netty/netty-all
+    implementation("io.netty:netty-all:4.1.56.Final")
+
+    implementation("org.littleshoot:littleproxy:1.1.3-KFIX") {
+        exclude("org.slf4j", "slf4j-log4j12")
+        exclude("io.netty", "netty-all")
+    }
+    implementation("com.github.ganskef:littleproxy-mitm:1.1.0") {
+        exclude("org.slf4j", "slf4j-log4j12")
+    }
+    // https://mvnrepository.com/artifact/commons-io/commons-io
+    implementation("commons-io:commons-io:2.8.0")
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
+    implementation("org.apache.commons:commons-lang3:3.11")
+
     compileAndRuntime("net.mamoe:mirai-core-api:2.0-M2-dev-2")
     testImplementation("net.mamoe:mirai-core:2.0-M2-dev-2")
     compileAndRuntime("net.mamoe:mirai-console:2.0-M1")
@@ -71,13 +97,6 @@ publishing {
     publications.register("artifact", MavenPublication::class.java) {
         from(components["java"])
         artifact(tasks.getByName("sourcesJar"))
-        val chromeExt = File("src/main/resources/mirai-selenium-ext.zip")
-        if (chromeExt.isFile) {
-            artifact(object :
-                org.gradle.api.publish.maven.internal.artifact.FileBasedMavenArtifact(chromeExt) {
-                override fun getDefaultExtension() = "crx"
-            })
-        }
     }
 }
 

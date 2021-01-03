@@ -59,4 +59,16 @@
             }
         })
     })();
+
+    (() => {
+        let UserAgent = "${MIRAI_SELENIUM-USERAGENT}";
+        if (UserAgent !== "${MIRAI_SELENIUM-USERAGENT}") {
+            Object.defineProperty(Navigator.prototype, "userAgent", {
+                get() {
+                    return UserAgent
+                }
+            });
+            document.querySelectorAll("script").forEach(it => it.remove());
+        }
+    })();
 })()
