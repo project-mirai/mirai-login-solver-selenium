@@ -13,21 +13,21 @@ import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.delay
 import net.mamoe.mirai.Bot
 import net.mamoe.mirai.utils.LoginSolver
-import net.mamoe.mirai.utils.SwingSolver
 import java.net.InetAddress
 import java.util.*
 import java.util.concurrent.atomic.AtomicBoolean
 
-internal class SkSkProxyLoginSolver : LoginSolver() {
+internal class SkSkProxyLoginSolver(
+    private val delegate: LoginSolver
+) : LoginSolver() {
     override val isSliderCaptchaSupported: Boolean get() = true
 
     override suspend fun onSolvePicCaptcha(bot: Bot, data: ByteArray): String? {
-        return SwingSolver.onSolvePicCaptcha(bot, data)
+        return delegate.onSolvePicCaptcha(bot, data)
     }
 
-
     override suspend fun onSolveUnsafeDeviceLoginVerify(bot: Bot, url: String): String? {
-        return SwingSolver.onSolveUnsafeDeviceLoginVerify(bot, url)
+        return delegate.onSolveUnsafeDeviceLoginVerify(bot, url)
     }
 
     override suspend fun onSolveSliderCaptcha(bot: Bot, url: String): String? = executeSksks(url)

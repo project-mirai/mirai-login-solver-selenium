@@ -20,15 +20,26 @@ import java.util.*
 internal class SeleniumLoginSolverPluginMode : KotlinPlugin(
     JvmPluginDescriptionBuilder(
         id = "net.mamoe.mirai-login-solver-selenium",
-        version = "1.0-dev-11"
+        version = "1.0-dev-12"
     ).build()
 ), BotConfigurationAlterer {
     override fun PluginComponentStorage.onLoad() {
         logger.info("Loading mirai-login-solver-selenium v$version")
         try {
+            if (System.getProperty("mirai.selenium.use-http-proxy") != null) {
+                throw DisableByOptions("Disable by -Dmirai.selenium.use-http-proxy")
+            }
             SeleniumLoginSolver
         } catch (err: Throwable) {
             logger.warning("mirai-login-solver-selenium is not supported.", err)
+            logger.warning("Using HttpProxyServer mode")
+
+            contributeBotConfigurationAlterer { _, configuration ->
+                configuration.loginSolver = SkSkProxyLoginSolver(
+                    configuration.loginSolver ?: error("Default login solver is null.")
+                )
+                configuration
+            }
             return
         }
         contributeBotConfigurationAlterer(this@SeleniumLoginSolverPluginMode)
