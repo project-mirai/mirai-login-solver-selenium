@@ -21,7 +21,7 @@ plugins {
 }
 
 group = "net.mamoe"
-version = "1.0-dev-12"
+version = "1.0-dev-13"
 
 repositories {
     mavenCentral()
@@ -37,7 +37,7 @@ dependencies {
     }
 
     fun mxlib(module:String):String {
-        return "io.github.karlatemp.mxlib:mxlib-$module:3.0-dev-5"
+        return "io.github.karlatemp.mxlib:mxlib-$module:3.0-dev-7"
     }
 
     compileAndRuntime(kotlin("stdlib"))
