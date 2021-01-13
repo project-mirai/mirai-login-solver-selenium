@@ -103,13 +103,26 @@ dependencies {
 curl -L https://maven.aliyun.com/repository/public/net/mamoe/mirai-login-solver-selenium/1.0-dev-10/mirai-login-solver-selenium-1.0-dev-10-all.jar -o mirai-login-solver-selenium-1.0-dev-10.jar
 
 ```
+--------------------
 
 ## 手动完成滑动验证
+
+注: 此章节针对的是**手动**完成验证
+
+即在**不使用不依靠** mirai-login-solver-selenium 的情况下完成滑块验证码
+
+**仅在 mirai-login-solver-selenium 无法使用的情况下考虑阅读此章节**
 
 ### 环境准备
 
 在 `mirai` 运行时中添加 JVM 属性 `mirai.slider.captcha.supported` (添加参数 `-Dmirai.slider.captcha.supported`)
 以确认手动完成滑动验证
+
+> 对于 `mirai-console-loader`, 请使用任意一款文本编辑器打开 `mcl`/`mcl.bat`, 在 `java ..... -jar ....` 命令中的 `-jar`
+> 前加入参数 `-Dmirai.slider.captcha.supported`
+>
+> `java ..... -Dmirai.slider.captcha.supported -jar ....`
+
 
 准备一台拥有桌面系统的电脑, 并且需要安装支持 DevTools 的任意浏览器 (Eg `Chrome`, `Firefox`)
 
