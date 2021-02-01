@@ -82,7 +82,7 @@ repositories {
 }
 
 dependencies {
-    runtimeOnly("net.mamoe:mirai-login-solver-selenium:1.0-dev-15")
+    runtimeOnly("net.mamoe:mirai-login-solver-selenium:1.0-dev-16")
 }
 ```
 
@@ -101,7 +101,7 @@ dependencies {
 
 # Download mirai-login-solver-selenium
 
-curl -L https://maven.aliyun.com/repository/public/net/mamoe/mirai-login-solver-selenium/1.0-dev-15/mirai-login-solver-selenium-1.0-dev-15-all.jar -o mirai-login-solver-selenium-1.0-dev-15.jar
+curl -L https://maven.aliyun.com/repository/public/net/mamoe/mirai-login-solver-selenium/1.0-dev-16/mirai-login-solver-selenium-1.0-dev-16-all.jar -o mirai-login-solver-selenium-1.0-dev-16.jar
 
 ```
 --------------------
