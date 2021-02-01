@@ -87,6 +87,7 @@ internal class ProxyServer(
     val server = DefaultHttpProxyServer.bootstrap()
         .withManInTheMiddle(MITM)
         .withPort(port)
+        .withAllowLocalOnly(false)
         .withFiltersSource(object : HttpFiltersSourceAdapter() {
             private val CONNECTED_URL: AttributeKey<String> = AttributeKey.valueOf("connected_url")
 
