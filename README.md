@@ -77,12 +77,11 @@ MacOS   - Chrome  - test ok
 `build.gradle`, `build.gradle.kts`
 ```kotlin
 repositories {
-    jcenter()
-    maven { url = uri("https://dl.bintray.com/karlatemp/misc") }
+    mavenCentral()
 }
 
 dependencies {
-    runtimeOnly("net.mamoe:mirai-login-solver-selenium:1.0-dev-16")
+    runtimeOnly("net.mamoe:mirai-login-solver-selenium:1.0-dev-17")
 }
 ```
 
@@ -101,7 +100,7 @@ dependencies {
 
 # Download mirai-login-solver-selenium
 
-curl -L https://maven.aliyun.com/repository/public/net/mamoe/mirai-login-solver-selenium/1.0-dev-16/mirai-login-solver-selenium-1.0-dev-16-all.jar -o mirai-login-solver-selenium-1.0-dev-16.jar
+curl -L https://maven.aliyun.com/repository/public/net/mamoe/mirai-login-solver-selenium/1.0-dev-17/mirai-login-solver-selenium-1.0-dev-17-all.jar -o mirai-login-solver-selenium-1.0-dev-17.jar
 
 ```
 --------------------
