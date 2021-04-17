@@ -14,6 +14,7 @@ import org.jetbrains.kotlin.utils.addToStdlib.safeAs
 import java.util.*
 
 plugins {
+    id("net.mamoe.maven-central-publish") version "0.3.1"
     kotlin("jvm") version "1.4.21"
     id("com.github.johnrengelman.shadow") version "6.1.0"
     `maven-publish`
@@ -21,6 +22,7 @@ plugins {
 
 group = "net.mamoe"
 version = "1.0-dev-17"
+description = "Mirai Login Solver (Selenium)"
 
 repositories {
     mavenCentral()
@@ -87,11 +89,10 @@ tasks.create("sourcesJar", Jar::class) {
     from(sourceSets.main.get().allSource)
 }
 
-publishing {
-    publications.register("artifact", MavenPublication::class.java) {
-        from(components["java"])
-        artifact(tasks.getByName("sourcesJar"))
-    }
+mavenCentralPublish {
+    githubProject("project-mirai", "mirai-login-solver-selenium")
+    licenseFromGitHubProject("Apache-2.0", "master")
+    developer("Karlatemp", email = "karlatemp@vip.qq.com")
 }
 
 

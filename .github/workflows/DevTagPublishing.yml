@@ -15,6 +15,8 @@ jobs:
   # This workflow contains a single job called "build"
   build:
     runs-on: ubuntu-latest
+    env:
+      PUBLICATION_CREDENTIALS: ${{ secrets.PUBLICATION_CREDENTAILS }}
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 1.8
@@ -27,7 +29,5 @@ jobs:
         run: ./gradlew clean
       - name: Gradle build
         run: ./gradlew build # if test's failed, don't publish
-      - name: Gradle bintrayUpload
-        run: ./gradlew bintrayUpload
-          -Dbintray_user=${{ secrets.BINTRAY_USER }} -Pbintray_user=${{ secrets.BINTRAY_USER }}
-          -Dbintray_key=${{ secrets.BINTRAY_KEY }} -Pbintray_key=${{ secrets.BINTRAY_KEY }}
+      - run: ./gradlew checkMavenCentralPublication
+      - run: ./gradlew publish

@@ -16,6 +16,7 @@ import kotlinx.serialization.json.JsonPrimitive
 import net.mamoe.mirai.Bot
 import net.mamoe.mirai.network.WrongPasswordException
 import net.mamoe.mirai.utils.LoginSolver
+import net.mamoe.mirai.utils.MiraiInternalApi
 import net.mamoe.mirai.utils.SwingSolver
 import org.openqa.selenium.Dimension
 import org.openqa.selenium.PageLoadStrategy
@@ -79,6 +80,7 @@ internal val script by lazy {
     }
 }
 
+@OptIn(MiraiInternalApi::class)
 internal fun process(url: String): String? {
     System.err.println("[LoginSolverSelenium] Captcha URL: $url")
     Thread.currentThread().contextClassLoader = classLoader
