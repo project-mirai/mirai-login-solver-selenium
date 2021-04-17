@@ -17,6 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       PUBLICATION_CREDENTIALS: ${{ secrets.PUBLICATION_CREDENTIALS }}
+      IS_ACTION: true
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 1.8

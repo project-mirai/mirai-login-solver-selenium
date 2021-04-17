@@ -35,7 +35,7 @@ dependencies {
         testImplementation(module)
     }
 
-    fun mxlib(module:String):String {
+    fun mxlib(module: String): String {
         return "io.github.karlatemp.mxlib:mxlib-$module:3.0-dev-16"
     }
 
@@ -95,6 +95,18 @@ mavenCentralPublish {
     developer("Karlatemp", email = "karlatemp@vip.qq.com")
 }
 
+if (System.getenv("IS_ACTION") != null) {
+    afterEvaluate {
+        extensions.configure<io.github.karlatemp.publicationsign.PublicationSignExtension> {
+            val sign = this@configure
+            val signer = sign.signerAllocator.newGpgSigner(rootProject)
+            val workflow = io.github.karlatemp.publicationsign.signerimpl.GpgSignerImpl::class.java.getDeclaredField(
+                "workflow"
+            ).also { it.isAccessible = true }.get(signer) as io.github.karlatemp.publicationsign.GpgSignerWorkflow
+            workflow.workingDir = File("/tmp/tmw")
+        }
+    }
+}
 
 fun Project.propertySafe(prop: String): Any? {
     if (hasProperty(prop)) return property(prop)
