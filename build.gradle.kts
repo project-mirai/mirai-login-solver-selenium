@@ -17,17 +17,14 @@ plugins {
     kotlin("jvm") version "1.4.21"
     id("com.github.johnrengelman.shadow") version "6.1.0"
     `maven-publish`
-    id("com.jfrog.bintray") version "1.8.5"
 }
 
 group = "net.mamoe"
-version = "1.0-dev-16"
+version = "1.0-dev-17"
 
 repositories {
     mavenCentral()
     mavenLocal()
-    maven(url = "https://dl.bintray.com/karlatemp/misc")
-    jcenter()
 }
 
 dependencies {
@@ -37,7 +34,7 @@ dependencies {
     }
 
     fun mxlib(module:String):String {
-        return "io.github.karlatemp.mxlib:mxlib-$module:3.0-dev-14"
+        return "io.github.karlatemp.mxlib:mxlib-$module:3.0-dev-16"
     }
 
     compileAndRuntime(kotlin("stdlib"))
@@ -55,21 +52,9 @@ dependencies {
     // https://mvnrepository.com/artifact/io.netty/netty-all
     implementation("io.netty:netty-all:4.1.56.Final")
 
-    implementation("org.littleshoot:littleproxy:1.1.3-KFIX") {
-        exclude("org.slf4j", "slf4j-log4j12")
-        exclude("io.netty", "netty-all")
-    }
-    implementation("com.github.ganskef:littleproxy-mitm:1.1.0") {
-        exclude("org.slf4j", "slf4j-log4j12")
-    }
-    // https://mvnrepository.com/artifact/commons-io/commons-io
-    implementation("commons-io:commons-io:2.8.0")
-    // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
-    implementation("org.apache.commons:commons-lang3:3.11")
-
-    compileAndRuntime("net.mamoe:mirai-core-api:2.0-M2-dev-2")
-    testImplementation("net.mamoe:mirai-core:2.0-M2-dev-2")
-    compileAndRuntime("net.mamoe:mirai-console:2.0-M1")
+    compileAndRuntime("net.mamoe:mirai-core-api:2.6.1")
+    testImplementation("net.mamoe:mirai-core:2.6.1")
+    compileAndRuntime("net.mamoe:mirai-console:2.6.1")
 }
 
 //tasks.create("packageExt", JavaExec::class) {
@@ -106,36 +91,6 @@ publishing {
     publications.register("artifact", MavenPublication::class.java) {
         from(components["java"])
         artifact(tasks.getByName("sourcesJar"))
-    }
-}
-
-bintray {
-    setPublications("artifact")
-
-    user = (
-            project.propertySafe("bintray.user")
-                ?: project.propertySafe("bintray_user")
-                ?: System.getenv("USERNAME")
-                ?: ""
-            ).toString()
-    key = (
-            project.propertySafe("bintray.key")
-                ?: project.propertySafe("bintray_key")
-                ?: System.getenv("TOKEN")
-                ?: ""
-            ).toString()
-    override = true
-    publish = true
-    pkg.apply {
-        repo = "mirai"
-        name = rootProject.name
-        setLicenses("AGPL-v3")
-        vcsUrl = "https://github.com/project-mirai/mirai-login-solver-selenium.git"
-        version.apply {
-            name = project.version.toString()
-            desc = project.version.toString()
-            released = Date().toString()
-        }
     }
 }
 
