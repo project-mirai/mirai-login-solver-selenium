@@ -29,6 +29,7 @@ jobs:
       - name: Gradle clean
         run: ./gradlew clean
       - name: Gradle build
-        run: ./gradlew build # if test's failed, don't publish
-      - run: ./gradlew checkMavenCentralPublication
-      - run: ./gradlew publish
+        run: ./gradlew build --info # if test's failed, don't publish
+      - run: ./gradlew checkMavenCentralPublication --info
+      - run: ./gradlew publish --info
+      - run: ./gradlew closeAndReleaseRepository --info
