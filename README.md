@@ -24,12 +24,21 @@ Mirai 是一个在全平台下运行，提供 QQ 协议支持的高效率机器�
 在 `mirai` 运行时中添加 JVM 属性 `mirai.slider.captcha.supported` (添加参数 `-Dmirai.slider.captcha.supported`)
 以确认手动完成滑动验证
 
-**注: 先不要进行登录**
 
 > 对于 `mirai-console-loader`, 请使用任意一款文本编辑器打开 `mcl`/`mcl.bat`, 在 `java ..... -jar ....` 命令中的 `-jar`
 > 前加入参数 `-Dmirai.slider.captcha.supported`
 >
 > `java ..... -Dmirai.slider.captcha.supported -jar ....`
+
+----
+
+方法 1: 使用 [mzdluo123/TxCaptchaHelper](https://github.com/mzdluo123/TxCaptchaHelper)
+
+----
+
+方法 2:
+
+**注: 使用此方法先不要进行登录**
 
 准备一台电脑(`Require Chrome Desktop installed`),
 一条数据线,
@@ -67,4 +76,4 @@ ticket 后那一坨就是要输入回 mirai 的内容
 - 复制的时候记得删掉引号(`"`, 前后都有一个), 那个不是ticket内容
 - 速度要快
 - 注意不要漏字符(没复制完, 后面还有很长)
-    - 可以先开一次试一下手(不输入ticket) 然后重启进行滑块
+  - 可以先开一次试一下手(不输入ticket) 然后重启进行滑块
