@@ -30,6 +30,10 @@ Mirai 是一个在全平台下运行，提供 QQ 协议支持的高效率机器�
 >
 > `java ..... -Dmirai.slider.captcha.supported -jar ....`
 
+> 注:
+> - 如果运行于 `mirai-console`, 需要在 `plugins` 内删除 `mirai-login-solver-selenium` 插件
+> - 如果直接基于 `mirai-core` 开发, 需要删除 `mirai-login-solver-selenium` 依赖
+
 ----
 
 方法 1: 使用 [mzdluo123/TxCaptchaHelper](https://github.com/mzdluo123/TxCaptchaHelper)
